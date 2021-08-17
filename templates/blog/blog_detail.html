@@ -1,0 +1,21 @@
+  {% extends 'base.html' %}
+  {% load blog_extras %}
+  {% block body %}
+
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div class="post-preview">
+        <h2 class="post-title">
+          {{ blog.text}}
+        </h2>
+        <p class="post-meta">{{blog.posted_date|date:"Y年m月d日 h:m"}} | {{ blog.posted_date|timesince|upto:',' }}前</p>
+      </div>
+
+      {% if user.is_authenticated %}
+      <a href="{% url 'blog:update' blog.id %}" class="btn btn-primary">編集</a>
+      <a href="{% url 'blog:delete' blog.id %}" class="btn btn-danger">削除</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% endblock body %}
