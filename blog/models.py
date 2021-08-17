@@ -2,7 +2,10 @@ from django.db import models
 
 
 class Blog(models.Model):
-    title = models.CharField(blank=False, null=False, max_length=150)
-    text = models.TextField(blank=True)
-    created_datetime = models.DateTimeField(auto_now_add=True)
-    updated_datetime = models.DateTimeField(auto_now=True)
+
+    text = models.CharField(max_length=140)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    class META:
+        ordering = ["-poosted_date"]
